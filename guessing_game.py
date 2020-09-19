@@ -14,6 +14,11 @@ def start_game():
     answer = random.randint(1, RANGE)
     guesses = 0
     print("Ready to play?\n")
+    if high_score:
+        print(
+            f"Your current high score is {high_score} {plural(high_score)}!\n")
+    else:
+        print("You haven't set a high score yet.\n")
     while True:
         guess = input(f"Guess a number between 1 and {RANGE}:  ")
         if not guess:
@@ -43,7 +48,7 @@ def start_game():
 
 
 def welcome():
-    print("\n", "=" * 40)
+    print("\n" + "=" * 40)
     print("Welcome to the Number Guessing Game")
     print("\nA Treehouse Python Techdegree Project")
     print("\nby Steven Tagawa")
