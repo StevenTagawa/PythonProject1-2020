@@ -101,7 +101,7 @@ def select_mode():
         if not check_empty(mode_choice):
             continue
         mode_choice = check_num(mode_choice)
-        if not mode_choice:
+        if mode_choice is None:
             continue
         if not check_range(mode_choice, 1, 4):
             continue
@@ -153,7 +153,7 @@ def get_guess(guesses, answer, maximum):
         if check_quit(guess, guesses, answer):
             return None
         guess = check_num(guess)
-        if not guess:
+        if guess is None:
             continue
         if not check_range(guess, 1, maximum):
             continue
