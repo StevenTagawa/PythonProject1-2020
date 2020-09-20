@@ -128,11 +128,11 @@ def check_range(number, minimum, maximum):
 
 
 def check_empty(string):
-    if not string:
-        print(f"You didn't enter anything!  Try again.\n")
-        return True
-    else:
+    if string:
         return False
+    else:
+        print("You didn't enter anything!  Try again.\n")
+        return True
 
 
 def check_quit(guess, guesses, answer):
