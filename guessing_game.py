@@ -98,7 +98,7 @@ def select_mode():
     print("=" * 40 + "\n")
     while True:
         mode_choice = input("What's your choice? [1-4]  ")
-        if not check_empty(mode_choice):
+        if check_empty(mode_choice):
             continue
         mode_choice = check_num(mode_choice)
         if mode_choice is None:
@@ -130,9 +130,9 @@ def check_range(number, minimum, maximum):
 def check_empty(string):
     if not string:
         print(f"You didn't enter anything!  Try again.\n")
-        return False
-    else:
         return True
+    else:
+        return False
 
 
 def check_quit(guess, guesses, answer):
@@ -148,7 +148,7 @@ def get_guess(guesses, answer, maximum):
     while True:
         print(f"Guess a number between 1 and {maximum}")
         guess = input(f"or enter 'Q' to give up:  ")
-        if not check_empty(guess):
+        if check_empty(guess):
             continue
         if check_quit(guess, guesses, answer):
             return None
