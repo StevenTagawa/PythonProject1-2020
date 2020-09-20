@@ -15,7 +15,7 @@ MODE_NAMES = ["Easy", "Medium", "Hard", "INSANE"]
 def start_game(mode):
     answer = random.randint(1, RANGE[mode])
     guesses = 0
-    os.system("cls" if "name" == "nt" else "clear")
+    clear()
     print("Ready to play?\n")
     if high_scores[mode]:
         print(
@@ -41,7 +41,7 @@ def start_game(mode):
 
 
 def welcome():
-    print("\n" + "=" * 40)
+    print("=" * 40)
     print("Welcome to the Number Guessing Game")
     print("\nA Treehouse Python Techdegree Project")
     print("\nby Steven Tagawa")
@@ -160,21 +160,54 @@ def get_guess(guesses, answer, maximum):
         return guess
 
 
+def play_again():
+    response = ""
+    while response.lower() != "y":
+        response = input("\nDo you want to play again? [Y/N]  ")
+        if not check_yes_no(response):
+            continue
+        if response.lower() == "n":
+            return False
+    return True
+
+
+def new_mode(mode):
+    response = ""
+    while response.lower() != "y":
+        response = input(
+            "\nDo you want to change the difficulty level? [Y/N]  ")
+        if not check_yes_no(response):
+            continue
+        if response.lower() == "n":
+            return mode
+    return None
+
+
+def check_yes_no(string):
+    if string.lower() not in ["y", "n"]:
+        print("Sorry, I need a 'y' or an 'n' here...  Try again.")
+        return False
+    else:
+        return True
+
+
+def clear():
+    os.system("cls" if "name" == "nt" else "clear")
+
+
 # EXECUTION STARTS HERE
 high_scores = [None, None, None, None]
 mode = None
 
+clear()
 welcome()
 while True:
-    if not mode:
+    if mode is None:
         mode = select_mode()
     score = start_game(mode)
     high_scores = check_score(score, high_scores, mode)
-    if input("\nDo you want to play again? [Y/N]  ").lower() == "y":
-        if input(
-            "\nDo you want to change the difficulty level? [Y/N]  "
-        ).lower() == "y":
-            mode = None
+    if play_again():
+        mode = new_mode(mode)
     else:
         break
 goodbye()
