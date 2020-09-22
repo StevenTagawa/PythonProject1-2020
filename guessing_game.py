@@ -64,26 +64,25 @@ def plural(number):
 
 
 def check_score(score, high_scores, mode):
-    if not score:
-        return high_scores
-    if high_scores[mode]:
-        if score == high_scores[mode]:
-            print(
-                f"\nYou tied your best score in {MODE_NAMES[mode].upper()} "
-                f"MODE of {high_scores[mode]} {plural(high_scores[mode])}!")
-        elif score < high_scores[mode]:
-            print(
-                f"\nYou just beat your high score in "
-                f"{MODE_NAMES[mode].upper()} MODE!")
-            print(
-                f"Your new high score in {MODE_NAMES[mode].upper()} MODE is "
-                f"{score} {plural(score)}!")
-            high_scores[mode] = score
+    if score:
+        if high_scores[mode]:
+            if score == high_scores[mode]:
+                print(
+                    f"\nYou tied your best score in {MODE_NAMES[mode].upper()} "
+                    f"MODE of {high_scores[mode]} {plural(high_scores[mode])}!")
+            elif score < high_scores[mode]:
+                print(
+                    f"\nYou just beat your high score in "
+                    f"{MODE_NAMES[mode].upper()} MODE!")
+                print(
+                    f"Your new high score in {MODE_NAMES[mode].upper()} MODE "
+                    f"is {score} {plural(score)}!")
+                high_scores[mode] = score
+            else:
+                print(f"\nYour score was {score} {plural(score)}.")
         else:
             print(f"\nYour score was {score} {plural(score)}.")
-    else:
-        print(f"\nYour score was {score} {plural(score)}.")
-        high_scores[mode] = score
+            high_scores[mode] = score
     return high_scores
 
 
